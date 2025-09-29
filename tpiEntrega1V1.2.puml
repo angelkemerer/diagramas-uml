@@ -1,0 +1,4 @@
+@startuml diagrama caso de uso
+actor Juan
+
+@enduml
