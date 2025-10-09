@@ -1,0 +1,4 @@
+1. CU eliminar registrar actividades
+2. acomodar objetivos
+3. uml
+4. prototipos
