@@ -1,0 +1,150 @@
+@startuml diagrama de clases TPI.V1
+' DEFINICION DE CLASES
+class Usuario {
+    nroUser
+    nombre
+    apellido
+    dni
+    telefono
+    domicilio
+    mail
+    fechaNacimiento
+    retiro : Retiro
+    crear ()
+    mostrar ()
+    calcularEdad ()
+    conocerRetiro ()
+}
+class Retiro {
+    nombre
+    activades : Actividad
+    descripcion
+    horaInicio
+    horaFin
+    fechaInicio
+    fechaFin
+    fechaRegistro
+    precio
+    encargado : Encargado
+    ubicacion : Ubicacion
+    estado : Estado
+    notas
+    recordatorio : Recordatorio
+    enlace : Enlace
+    seña : Seña
+    crear ()
+    mostrar ()
+    conocerActividades ()
+    conocerEncargado ()
+    conocerUbicacion ()
+    conocerEstado ()
+    conocerRecordatorio ()
+    conocerEnlace ()
+    registrarDiaRegistro ()
+    registrarEstadoRealizado ()
+    registrarEstadoReservado ()
+    calcularSaldoPendiente ()
+    registrarNotas ()
+    notificarRecordatorio ()
+    - notificarFechaFin ()
+}
+class Actividad {
+    nroAct
+    nombre
+    descripcion
+    horaInicio
+    horaFin
+    - fecha 
+    crear ()
+    mostrar ()
+    calcularDuracion ()
+}
+
+class Ubicacion {
+    provincia
+    ciudad
+    direccion
+    crear ()
+    mostrar ()
+}
+
+enum Estado {
+    nombre
+    crear ()
+    mostrar ()
+    tomarNombre ()
+    mostrarNombre ()
+}
+
+class Recordatorio {
+    nroRec
+    descripcion
+    motivo
+    fecha
+    hora
+    crear ()
+    mostrar ()
+}
+
+class Enlace {
+    url
+    nombreWeb
+    crear ()
+    mostrar ()
+}
+
+class Encargado {
+    tipoEncargado : TipoEncargado
+    nombre
+    cuil/cuit
+    telefono
+    mail
+    crear ()
+    mostrar ()
+    conocerTipoEncargado ()
+}
+
+class TipoEncargado {
+    tipo
+    crear ()
+    mostrar ()
+}
+
+class Seña {
+    monto
+    fecha
+    medioDePago
+    crear ()
+    mostrar ()
+}
+
+' NOTAS CON  POSICIONAMIENTO
+note left of Ubicacion::direccion
+    es la combinacion de
+    <b>calle y numero</b>
+end note
+note right of TipoEncargado
+    - <b>Persona</b>
+    - <b>Organizacion</b>
+end note
+note left of Estado
+    - <b>Realizado</b>
+    - <b>Reservado</b>
+end note
+
+' NOTAS CON ALIAS
+note "Esta clase incluye los\nmetodos de seteo,\nlos cuales son extensivos\na las demas clases" as N1
+
+' RELACIONES 
+Usuario --> Retiro : 1..*
+Retiro -> Actividad : 1..*
+Retiro -down-> Ubicacion : 1
+Retiro -down-> Estado : 1
+Estado .down. N1
+Retiro -down-> Encargado : 1
+Encargado -down-> TipoEncargado : 1
+Retiro --> Recordatorio : 1..*
+Retiro -left-> Enlace : 0,,*
+Retiro -right-> Seña : 0..1
+
+@enduml

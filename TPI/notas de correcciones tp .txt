@@ -1,10 +1,2 @@
-1. CU
-    CU eliminar registrar actividades
-    CU (cancelar retiro) o (dar de baja retiro) -> esa es la duda de cual de las dos elegir
-2. OBJETIVOS CU
-    pase todo a infinitivos y trate de usar verbos relacionados a SI
-3. UML
-    
-4. PROTOTIPOS
-    queda hacer el prototipo de registrar seña
-    luego hacer los mismos pero en figma
+
+
