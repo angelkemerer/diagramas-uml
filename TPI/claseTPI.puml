@@ -139,7 +139,7 @@ note "Esta clase incluye los\nmetodos de seteo,\nlos cuales son extensivos\na la
 
 ' RELACIONES 
 Usuario --> Retiro : <size: 16><b>1..*</b></size>
-Retiro -> Actividad : <size: 16><b>1..*</b></size>
+Retiro o-> Actividad : <size: 16><b>1..*</b></size>
 Retiro -down-> Ubicacion : <size: 16><b>1</b></size>
 Retiro -down-> Estado : <size: 16><b>1</b></size>
 Estado .down. N1
