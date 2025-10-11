@@ -20,10 +20,9 @@ package {
     usecase "Registrar recordatorios (4)" as UC4
     usecase "Registrar Notas pesonales (5)" as UC5
     usecase "Registrar seña (6)" as UC6
-    usecase "Registrar actividades (7)" as UC7
-    usecase "Consultar reseñas (8)" as UC8
-    usecase "Notificar fecha limite (9)" as UC9
-    usecase "Notificar recordatorios personalizados (10)" as UC10
+    usecase "Consultar reseñas (7)" as UC7
+    usecase "Notificar fecha limite (8)" as UC8
+    usecase "Notificar recordatorios personalizados (9)" as UC9
 }
 
 ' relaciones entre actores y casos de uso
@@ -34,7 +33,6 @@ us ---> UC4
 us ---> UC5
 us ---> UC6
 us ---> UC7
-us ---> UC8
+time ---> UC8
 time --> UC9
-time --> UC10
 @enduml
