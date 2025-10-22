@@ -1,0 +1,86 @@
+@startuml ministerio de salud
+' DEFINICION DE CLASES
+
+class Visitante {
+    dni
+    telefono
+    nombre
+    apellido
+    domicilio
+    tipoDocumento : TipoDocumento
+    visita : Visita
+    crear ()
+    mostrar ()
+    conocerTipoDoc ()
+    conocerVisita ()
+    calcularEdad ()
+}
+class Visita {
+    nroVisita
+    fechaHoraEntrada
+    fechaHoraSalida
+    detalleTramite
+    tramite : Tramite
+    Credencial : Credencial
+    estado : Estado
+    crear ()
+    mostrar ()
+    conocerTramite ()
+    conocerCredencial ()
+    conocerEstado ()
+    registrarSalida ()
+    calcularDuracionVisita ()
+}
+class Area {
+    nombre
+    ubicacion
+    crear ()
+    mostrar ()
+}
+class Tramite {
+    tipo
+    area : Area
+    crear ()
+    mostrar ()
+    conocerArea ()
+}
+class Credencial {
+    codigoBarra
+    crear ()
+    mostrar ()
+}
+class Estado {
+    nombre
+    crear ()
+    mostrar ()
+    mostrarNombre ()
+    tomarNombre ()
+}
+class TipoDocumento {
+    tipo
+    crear ()
+    mostrar ()
+}
+
+' NOTAS CON ALIAS
+note "Esta clase incluye los\nmetodos de seteo,\nlos cuales son extensivos\na las demas clases" as N1
+
+' NOTAS CON  POSICIONAMIENTO
+note left of Estado
+    * <b>Iniciado</b>
+    * <b>Finalizado</b>
+end note
+note right of Visita::registrarSalida
+    Metodo que permite registrar la salida del visitante
+    actualizando la fechaHoraSalida y el estado de la visita (Finalizado)
+end note
+' RELACIONES
+Estado -> N1
+Visitante --> TipoDocumento :<size: 16><b>1</b></size>
+Visitante --> Visita : <size: 16><b>1..*</b></size>
+Visita --> Tramite : <size: 16><b>1</b></size>
+Visita --> Credencial : <size: 16><b>1</b></size>
+Visita --> Estado : <size: 16><b>1</b></size>
+Tramite --> Area : <size: 16><b>1..*</b></size>
+
+@enduml
