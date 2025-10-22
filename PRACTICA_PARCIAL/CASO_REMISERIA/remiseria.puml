@@ -1,0 +1,81 @@
+@startuml caso empresa de remiseria
+' DEFINICION DE CLASES
+    class cliente {
+        nombre
+        apellido
+        tipoDocumento : TipoDocumento
+        dni
+        telefono
+        domicilio
+        foto
+        nroSocio
+        viaje : Viaje
+        crear ()
+        mostrar ()
+        conocerViaje ()
+        conocerTipoDoc ()
+    }
+    class Viaje {
+        nroViaje
+        origen
+        destino
+        fechaHoraSalida
+        fechaHoraLlegada
+        precio
+        estadoViaje : EstadoViaje
+        cancelacion : Cancelacion
+        crear ()
+        mostrar ()
+        conocerEstadoViaje ()
+        conocerCancelacion ()
+        registrarLlegada ()
+        calcularDuracionViaje ()
+        calcularDemoraCancelacion ()
+    }
+    class TipoDocumento {
+        tipo
+        crear ()
+        mostrar ()
+        mostrarTipo ()
+        tomarTipo ()
+    }
+    class EstadoViaje {
+        valor
+        crear ()
+        mostrar ()
+    }
+    class Cancelacion {
+        motivo
+        fechaHoraCancelacion
+        crear ()
+        mostrar ()
+    }
+    class Movil {
+        nroMovil
+        modelo
+        patente
+        capacidad
+        viaje : Viaje
+        crear ()
+        mostrar ()
+        conocerViaje ()
+    }
+
+' NOTAS
+note right of EstadoViaje
+    * Iniciado
+    * Finalizado
+    * Cancelado
+end note
+note right of TipoDocumento
+    Esta clase incluye los metodos de seteo 
+    los cuales son extensivos a las demas clases.}
+end note
+
+' RELACIONES
+cliente --> TipoDocumento : <size: 16><b>1</b></size>
+cliente --> Viaje : <size: 16><b>1..*</b></size>
+Viaje --> EstadoViaje : <size: 16><b>1</b></size>
+Viaje --> Cancelacion : <size: 16><b>0..1</b></size>
+Movil --> Viaje : <size: 16><b>1..*</b></size>
+@enduml
