@@ -69,7 +69,7 @@ note right of EstadoViaje
 end note
 note right of TipoDocumento
     Esta clase incluye los metodos de seteo 
-    los cuales son extensivos a las demas clases.}
+    los cuales son extensivos a las demas clases
 end note
 
 ' RELACIONES

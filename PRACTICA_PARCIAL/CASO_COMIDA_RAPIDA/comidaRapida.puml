@@ -1,0 +1,80 @@
+@startuml comida rapida caso 2 guia 1
+' DEFINICION DE CLASES
+class Pedido {
+    nroPedido
+    detalle : DetallePedido
+    estado : Estado
+    fechaHora
+    crear ()
+    mostrar ()
+    conocerDetalle ()
+    conocerEstado ()
+    calcularTotal ()
+    registrarPedidoListo ()
+    registrarInicioProceso ()
+    registrarEntrega ()
+}
+
+class DetallePedido {
+    cantidad
+    precio
+    tipoMenu : Menu
+    crear ()
+    mostrar ()
+    conocerMenu ()
+    calcularSubtotal ()
+}
+
+class Estado {
+    nombre
+    crear ()
+    mostrar ()
+    mostrarNombre ()
+    tomarNombre ()
+}
+
+class Menu {
+    nombre
+    precio
+    principal : Principal
+    bebida : Bebida
+    acompanamiento : Acompanamiento
+    crear ()
+    mostrar ()
+    conocerPrincipal ()
+    conocerBebida ()
+    conocerAcompanamiento ()
+}
+
+class Principal {
+    nombre
+    crear ()
+    mostrar ()
+}
+
+class Bebida {
+    nombre
+    crear ()
+    mostrar ()
+}
+
+class Acompanamiento {
+    nombre
+    crear ()
+    mostrar ()
+}
+
+note right of Estado
+    Estados posibles:
+    * En proceso
+    * Listo
+    * Entregado
+end note
+
+Pedido -> DetallePedido : 1..*
+DetallePedido -> Menu : 1
+Menu -down-> Principal : 1
+Menu -down-> Bebida : 1
+Menu -down-> Acompanamiento : 1
+Pedido --> Estado : 1
+@enduml

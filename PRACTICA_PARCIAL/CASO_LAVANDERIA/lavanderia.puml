@@ -1,0 +1,113 @@
+@startuml lavanderia caso 1 guia 1
+' DEFINICION DE CLASES
+class Cliente {
+    nombre
+    apellido
+    domicilio : Domicilio
+    TipoDocumento : TipoDocumento
+    nroDocumento
+    telefono
+    nroCliente
+    Pedido : Pedido
+    crear ()
+    mostrar ()
+    conocerDomicilio ()
+    conocerTipoDocumento ()
+    conocerPedido ()
+}
+class TipoDocumento {
+    tipo
+    crear ()
+    mostrar ()
+    tomarTipo ()
+    mostrarTipo ()
+}
+class Domicilio {
+    calle
+    numero
+    ciudad
+    provincia
+    codigoPostal
+    crear ()
+    mostrar ()
+}
+
+class Pedido {
+    nroPedido
+    fecha
+    fechaDevolucionPactada
+    fechaDevolucionReal
+    detallePedido : DetallePedido
+    estadoPedido : EstadoPedido
+    crear ()
+    mostrar ()
+    conocerDetallePedido ()
+    conocerEstadoPedido ()
+    calcularTotal ()
+    registrarPedidoListo ()
+    registrarInicioProceso ()
+    registrarEntrega ()
+}
+
+class EstadoPedido {
+    valor
+    crear ()
+    mostrar ()
+}
+
+class DetallePedido {
+    categoria : Categoria
+    cantidad
+    precio
+    crear ()
+    mostrar ()
+    conocerCategoria ()
+    calcularSubtotal ()
+}
+
+class Categoria {
+    tipoServicio : TipoServicio
+    tipoPrecio : TipoPrecio
+    precio
+    crear ()
+    mostrar ()
+    conocerTipoServicio ()
+    conocerTipoPrecio ()
+}
+
+class TipoServicio {
+    descripcion
+    nombre
+    crear ()
+    mostrar ()
+}
+
+class TipoPrecio {
+    descripcion
+    nombre
+    crear ()
+    mostrar ()
+}
+
+' NOTAS
+note right of TipoDocumento
+    esta clase incluye los metodos de seteo 
+    los cuales son extensivos a las demas clases
+end note
+
+note right of EstadoPedido
+    * En Proceso
+    * Listo
+    * Entregado
+end note
+' DEFINICION DE RELACIONES
+
+Cliente -> Domicilio : 1
+Cliente -> TipoDocumento : 1
+Cliente --> Pedido : 1..*
+Pedido o-> DetallePedido : 1..*
+Pedido --> EstadoPedido : 1
+DetallePedido --> Categoria : 1
+Categoria --> TipoServicio : 1
+Categoria --> TipoPrecio : 1
+@enduml
