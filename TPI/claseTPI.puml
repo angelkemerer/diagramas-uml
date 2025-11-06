@@ -1,4 +1,9 @@
 @startuml diagrama de clases TPI.V1
+' CONFIGURACION DEL DIAGRAMA
+skinparam linetype ortho
+skinparam ranksep 40
+skinparam nodesep 70
+
 ' DEFINICION DE CLASES
 class Usuario {
     nroUser
@@ -15,6 +20,7 @@ class Usuario {
     calcularEdad ()
     conocerRetiro ()
 }
+
 class Retiro {
     nombre
     activades : Actividad
@@ -28,10 +34,12 @@ class Retiro {
     encargado : Encargado
     ubicacion : Ubicacion
     estado : Estado
-    notas
+    notaPersonal
     recordatorio : Recordatorio
     enlace : Enlace
-    seña : Seña
+    pago : Pago
+    reseña : Reseña
+    notificacio : Notificacion
     crear ()
     mostrar ()
     conocerActividades ()
@@ -40,30 +48,44 @@ class Retiro {
     conocerEstado ()
     conocerRecordatorio ()
     conocerEnlace ()
+    conocerPago ()
+    conocerReseña ()
+    conocerNotificacion ()
     registrarDiaRegistro ()
     registrarEstadoRealizado ()
+    - registrarReseña ()
     registrarEstadoReservado ()
+    registrarConfirmacion ()
+    registrarPagoTotal ()
+    registrarCancelacion ()
+    registrarNoInteres ()
     calcularSaldoPendiente ()
-    registrarNotas ()
+    registrarNotaPersonal ()
     notificarRecordatorio ()
+    enviarNotificacion ()
     - notificarFechaFin ()
 }
+
 class Actividad {
     nroAct
     nombre
     descripcion
-    horaInicio
-    horaFin
-    fecha 
     crear ()
     mostrar ()
-    calcularDuracion ()
 }
 
 class Ubicacion {
-    provincia
-    ciudad
-    direccion
+    localidad
+    nombreDelLugar
+    direccion : Direccion
+    crear ()
+    mostrar ()
+    conocerDireccion ()
+}
+
+class Direccion {
+    calle
+    numero
     crear ()
     mostrar ()
 }
@@ -94,11 +116,10 @@ class Enlace {
 }
 
 class Encargado {
-    tipoEncargado : TipoEncargado
     nombre
-    cuil/cuit
     telefono
     mail
+    tipoEncargado : TipoEncargado
     crear ()
     mostrar ()
     conocerTipoEncargado ()
@@ -110,41 +131,86 @@ class TipoEncargado {
     mostrar ()
 }
 
-class Seña {
+class Pago {
     monto
     fecha
     medioDePago
+    tipoDePago : TipoDePago
+    crear ()
+    mostrar ()
+    conocerTipoDePago ()
+}
+
+class TipoDePago {
+    tipo
+    crear ()
+    mostrar ()
+}
+
+class Reseña {
+    nroRes
+    puntuacion
+    comentario
+    fecha
+    crear ()
+    mostrar ()
+}
+
+class Notificacion {
+    nroNot
+    descripcion
+    fechaHora
     crear ()
     mostrar ()
 }
 
 ' NOTAS CON  POSICIONAMIENTO
-note left of Ubicacion::direccion
-    es la combinacion de
-    <b>calle y numero</b>
-end note
 note right of TipoEncargado
-    - <b>Persona</b>
-    - <b>Organizacion</b>
+    - <b>Persona
+    - <b>Organizacion
 end note
 note left of Estado
-    - <b>Realizado</b>
-    - <b>Reservado</b>
+    - <b>Realizado
+    - <b>Reservado
+    - <b>Confirmado
+    - <b>Cancelado
+    - <b>No interesado
 end note
 
+note left of Reseña::puntuacion
+    De 
+    <b>1 a 5
+    <b>estrellas
+end note
+
+note right of TipoDePago
+    - <b>Seña</b>: adelanto inicial para reservar
+    - <b>Pago parcial</b>: abono intermedio
+    - <b>Pago final</b>: pago que completa el monto total 
+                        (incluye el caso de pago único)
+end note
 ' NOTAS CON ALIAS
 note "Esta clase incluye los\nmetodos de seteo,\nlos cuales son extensivos\na las demas clases" as N1
 
 ' RELACIONES 
-Usuario --> Retiro : <size: 16><b>1..*</b></size>
-Retiro o-> Actividad : <size: 16><b>1..*</b></size>
-Retiro -down-> Ubicacion : <size: 16><b>1</b></size>
-Retiro -down-> Estado : <size: 16><b>1</b></size>
-Estado .down. N1
-Retiro -down-> Encargado : <size: 16><b>1</b></size>
-Encargado -down-> TipoEncargado : <size: 16><b>1</b></size>
-Retiro --> Recordatorio : <size: 16><b>1..*</b></size>
-Retiro -left-> Enlace : <size: 16><b>0..*</b></size>
-Retiro -right-> Seña : <size: 16><b>0..1</b></size>
+Usuario ---> Retiro : <size: 16><b>1..*
+Retiro o---> Actividad : <size: 16><b>1..*
 
+Retiro -> Pago : <size: 16><b>0..*
+Pago -right-> TipoDePago : <size: 16><b>1
+
+Retiro -down-> Encargado : <size: 16><b>1
+Encargado -down-> TipoEncargado : <size: 16><b>1 
+
+Retiro -down-> Ubicacion : <size: 16><b>1
+Ubicacion -> Direccion : <size: 16><b>0..1
+
+Retiro -down-> Estado : <size: 16><b>1
+
+Retiro ---> Recordatorio : <size: 16><b>1..*
+Retiro --> Notificacion : <size: 16><b>0..* 
+Retiro -left-> Enlace : <size: 16><b>0..* 
+Retiro -left-> Reseña : <size: 16><b> 0..*
+
+Estado .down. N1 
 @enduml
