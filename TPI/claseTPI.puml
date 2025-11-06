@@ -1,7 +1,5 @@
 @startuml diagrama de clases TPI.V1
 ' DEFINICION DE CLASES
-' skinparam classAttributeFontSize 18
-
 class Usuario {
     nroUser
     nombre
