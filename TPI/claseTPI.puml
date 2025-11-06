@@ -1,4 +1,4 @@
-@startuml diagrama de clases TPI.V1
+@startuml diagrama de clases TPI etapa 2
 ' CONFIGURACION DEL DIAGRAMA
 skinparam linetype ortho
 skinparam ranksep 40
@@ -55,7 +55,7 @@ class Retiro {
     registrarEstadoRealizado ()
     - registrarReseña ()
     registrarEstadoReservado ()
-    registrarConfirmacion ()
+    registrarEstadoPagado ()
     registrarPagoTotal ()
     registrarCancelacion ()
     registrarNoInteres ()
@@ -117,6 +117,7 @@ class Enlace {
 
 class Encargado {
     nombre
+    apellido
     telefono
     mail
     tipoEncargado : TipoEncargado
@@ -172,7 +173,7 @@ end note
 note left of Estado
     - <b>Realizado
     - <b>Reservado
-    - <b>Confirmado
+    - <b>Pagado
     - <b>Cancelado
     - <b>No interesado
 end note
