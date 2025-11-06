@@ -52,14 +52,15 @@ class Retiro {
     conocerReseña ()
     conocerNotificacion ()
     registrarDiaRegistro ()
-    registrarEstadoRealizado ()
-    - registrarReseña ()
+    registrarEstadoARealizar ()
     registrarEstadoReservado ()
+    calcularSaldoPendiente ()
     registrarEstadoPagado ()
     registrarPagoTotal ()
+    registrarEstadoRealizado ()
+    - registrarReseña ()
     registrarCancelacion ()
     registrarNoInteres ()
-    calcularSaldoPendiente ()
     registrarNotaPersonal ()
     notificarRecordatorio ()
     enviarNotificacion ()
@@ -174,6 +175,7 @@ note left of Estado
     - <b>Realizado
     - <b>Reservado
     - <b>Pagado
+    - <b>A realizar
     - <b>Cancelado
     - <b>No interesado
 end note
