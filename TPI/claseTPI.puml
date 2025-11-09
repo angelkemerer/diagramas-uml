@@ -40,6 +40,7 @@ class Retiro {
     pago : Pago
     reseña : Reseña
     notificacio : Notificacion
+    imagen : Imagen
     crear ()
     mostrar ()
     conocerActividades ()
@@ -51,6 +52,7 @@ class Retiro {
     conocerPago ()
     conocerReseña ()
     conocerNotificacion ()
+    conocerImangen ()
     registrarDiaRegistro ()
     registrarEstadoARealizar ()
     registrarEstadoReservado ()
@@ -166,6 +168,16 @@ class Notificacion {
     mostrar ()
 }
 
+class Imagen {
+    nroImg
+    url
+    descripcion
+    anchoPx
+    altoPx
+    crear ()
+    mostrar ()
+}
+
 ' NOTAS CON  POSICIONAMIENTO
 note right of TipoEncargado
     - <b>Persona
@@ -177,7 +189,6 @@ note left of Estado
     - <b>Pagado
     - <b>A realizar
     - <b>Cancelado
-    - <b>No interesado
 end note
 
 note left of Reseña::puntuacion
@@ -214,6 +225,7 @@ Retiro ---> Recordatorio : <size: 16><b>1..*
 Retiro --> Notificacion : <size: 16><b>0..* 
 Retiro -left-> Enlace : <size: 16><b>0..* 
 Retiro -left-> Reseña : <size: 16><b> 0..*
+Retiro -down-> Imagen : <size: 16><b>0..*
 
 Estado .down. N1 
 @enduml

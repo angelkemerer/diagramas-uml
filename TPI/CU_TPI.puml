@@ -15,39 +15,41 @@ package {
 package {
     left to right direction
     usecase "Registar nuevo retiro (1)" as UC1
-    usecase "Modificar retiro (4)" as UC4
-    usecase "Registrar encargado (3)" as UC3
-    usecase "Registrar ubicacion (2)" as UC2
+    usecase "Modificar retiro (5)" as UC5
+    usecase "Registrar encargado (4)" as UC4
+    usecase "Registrar ubicacion (3)" as UC3
+    usecase "Registrar actividades (2)" as UC2
 
     UC1 <.. UC2 : <<extend>>
     UC1 <.. UC3 : <<extend>>
     UC1 <.. UC4 : <<extend>>
+    UC1 <.. UC5 : <<extend>>
 }
 
 package {
     left to right direction
-    usecase "Registrar fin de retiro (5)" as UC5
-    usecase "Consultar retiros (6)" as UC6
-    usecase "Cancelar retiro (7)" as UC7
-    usecase "Registrar recordatorios (8)" as UC8
-    usecase "Registrar Notas pesonales (9)" as UC9
-    usecase "Registrar pago (10)" as UC10
-    usecase "Consultar reseñas (11)" as UC11
-    usecase "Notificar fecha limite (12)" as UC12
-    usecase "Notificar recordatorios personalizados (13)" as UC13
+    usecase "Registrar fin de retiro (6)" as UC6
+    usecase "Consultar retiros (7)" as UC7
+    usecase "Cancelar retiro (8)" as UC8
+    usecase "Registrar recordatorios (9)" as UC9
+    usecase "Registrar Notas pesonales (10)" as UC10
+    usecase "Registrar pago (11)" as UC11
+    usecase "Consultar reseñas (12)" as UC12
+    usecase "Notificar fecha limite (13)" as UC13
+    usecase "Notificar recordatorios personalizados (14)" as UC14
 }
 
 ' relaciones entre actores y casos de uso
 us ---> UC1
-us ---> UC5
 us ---> UC6
 us ---> UC7
 us ---> UC8
 us ---> UC9
 us ---> UC10
 us ---> UC11
+us ---> UC12
 
-time ---> UC12
-time --> UC13
+time ---> UC13
+time --> UC14
 
 @enduml
